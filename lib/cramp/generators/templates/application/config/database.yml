@@ -1,6 +1,14 @@
 development:
-  adapter: em_mysql2
+  <% if database.eql?('mysql') -%>
+    adapter: em_mysql2
+  <% else -%>
+    adapter: em_postgresql
+  <% end -%>
   database: <%= app_name %>_development
   host: localhost
   username: root
-  pool: 100
+  <% if database.eql?('mysql') -%>
+    pool: 100
+  <% else -%>
+    pool: 10
+  <% end -%>
