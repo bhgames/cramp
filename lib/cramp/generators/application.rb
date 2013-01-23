@@ -39,6 +39,7 @@ module Cramp
         template 'config.ru'
         template 'Gemfile'
         template 'application.rb'
+        template 'Rakefile'
 
         empty_directory "public"
         empty_directory "public/javascripts"
@@ -64,6 +65,12 @@ module Cramp
       def create_models
         if active_record?
           empty_directory "app/models"
+        end
+      end
+
+      def create_db
+        if active_record?
+          empty_directory "db/migrate"
         end
       end
 
