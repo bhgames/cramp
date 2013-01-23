@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'cramp'
+gem 'cramp', :git => 'git://github.com/rankin/cramp.git'
 
 # Async webserver for running a cramp application
 gem 'thin'
@@ -11,17 +11,38 @@ gem 'http_router'
 # Collection of async-proof rack middlewares - https://github.com/rkh/async-rack.git
 gem 'async-rack'
 
-# For async Active Record models
+# For async Active Record models.
+# Uncomment mysql2 for mysql databases
+# If using postgres uncomment both 'pg' and 'em-postgresql-adapater' also
+# if using postgres uncomment 'em-synchrony' gem below
+# For postgres make sure to set your adapter as 'em_postgresql' and use pool size of 10 in database.yml
 <% if active_record? -%>
-gem 'mysql2', '~> 0.2.11'
-gem 'activerecord', :require => 'active_record'
+gem 'activesupport', '3.2.11'
+
+#gem 'mysql2', '~> 0.2.11'
+#gem 'pg'
+#gem 'em-postgresql-adapter', :git => 'git://github.com/leftbee/em-postgresql-adapter.git'
+
+gem 'activerecord', '3.2.11', :require => 'active_record'
 <% else -%>
-# gem 'mysql2', '~> 0.2.11'
-# gem 'activerecord', :require => 'active_record'
+#gem 'activesupport', '3.2.11'
+
+#gem 'mysql2', '~> 0.2.11'
+#gem 'pg'
+#gem 'em-postgresql-adapter', :git => 'git://github.com/leftbee/em-postgresql-adapter.git'
+
+#gem 'activerecord', '3.2.11', :require => 'active_record'
 <% end -%>
 
 # Using Fibers + async callbacks to emulate synchronous programming
+<% if active_record? -%>
+#gem 'em-synchrony', :git     => 'git://github.com/igrigorik/em-synchrony.git',
+#                    :require => ['em-synchrony',
+#                                 'em-synchrony/activerecord']
+<% else -%>
 # gem 'em-synchrony'
+<% end -%>
+
 
 # Generic interface to multiple Ruby template engines - https://github.com/rtomayko/tilt
 # gem 'tilt'
