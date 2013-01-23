@@ -11,7 +11,7 @@ module Cramp
 
       argument :application_path, :type => :string
       class_option :with_active_record, :type => :boolean, :aliases => "-M", :default => false, :desc => "Configures Active Record"
-      class_option :database, :type => :string, :alias => "-D", :default => 'mysql', :desc => "mysql or postgresql database?"
+      class_option :database, :type => :string, :aliases => "-D", :default => 'mysql', :desc => "mysql or postgresql database?"
 
       def initialize(*args)
         raise Thor::Error, "No application name supplied. Please run: cramp --help" if args[0].blank?
