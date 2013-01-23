@@ -13,9 +13,9 @@ module Cramp
       class_option :with_active_record, :type => :boolean, :aliases => "-M", :default => false, :desc => "Configures Active Record"
       class_option :database, :type => :string, :aliases => "-D", :default => 'mysql', :desc => "mysql or postgresql database?"
 
-      def initialize(*args)
+      def initialize(*args, options)
         raise Thor::Error, "No application name supplied. Please run: cramp --help" if args[0].blank?
-        raise Thor::Error, "Must specify database type (mysql|postgresql) if using ActiveRecord" if active_record? && database.blank?
+        raise Thor::Error, "Must specify database type mysql|postgresql if using ActiveRecord" if !args[1][0].blank? && args[1][1].blank?
         super
       end
 
