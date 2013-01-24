@@ -10,5 +10,5 @@ development:
   <% if database.eql?('mysql') -%>
   pool: 100
   <% else -%>
-  pool: 10
+  pool: 70
   <% end -%>
